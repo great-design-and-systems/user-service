@@ -1,6 +1,7 @@
+'use strict';
 var mongoose = require('mongoose');
 
-module.exports = function(done) {
+module.exports = function (done) {
     var PORT = process.env.DB_PORT || 27017;
     var HOST = process.env.DB_HOST || 'localhost';
     var TEST_DB = process.env.DB_TEST || 'test';
@@ -14,7 +15,7 @@ module.exports = function(done) {
 
     function connect(done) {
         if (mongoose.connection.readyState === 0) {
-            mongoose.connect(getDBUrl(), function(err) {
+            mongoose.connect(getDBUrl(), function (err) {
                 if (err) {
                     throw err;
                 }
@@ -44,7 +45,7 @@ module.exports = function(done) {
     function clearDB(done) {
         for (let i in mongoose.connection.collections) {
             if (mongoose.connection.collections[i] && mongoose.connection.collections[i].drop) {
-                mongoose.connection.collections[i].drop(function(err) {
+                mongoose.connection.collections[i].drop(function (err) {
                     console.log('collection dropped');
                 });
             }
