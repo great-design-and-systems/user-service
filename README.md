@@ -1,5 +1,5 @@
-# gds-ms-template
-Template for server-side micro-service project
+# User Service
+User service domain
 
 # Development Setup
 
@@ -19,7 +19,7 @@ Template for server-side micro-service project
 - run ```npm start```
 
 ### Running the test
-- run ```npm test``
+- run ```npm test```
 
 ### Watchers 
 - run ```npm run gulp watch``` to watch for source files then run the test
