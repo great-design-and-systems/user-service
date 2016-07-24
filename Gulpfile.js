@@ -7,6 +7,7 @@ var runSequence = require('run-sequence');
 var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var server = require('gulp-express');
+var nodemon = require('gulp-nodemon');
 var TEST_FILES = process.env.TEST_FILES || 'test/**/*.bdd.js';
 var SRC_FILES = process.env.SRC_FILES || 'src/**/*.js';
 var INDEX_FILE = 'index.js';
@@ -41,9 +42,17 @@ gulp.task('server-start', function() {
 });
 
 gulp.task('server-watch', function() {
-    server.run([INDEX_FILE]);
-    gulp.watch([SRC_FILES, TEST_FILES], function(event) {
-        server.notify(event);
+    nodemon({
+        script: INDEX_FILE,
+        ext: 'js',
+        env: {
+            PORT: 8000,
+            DB: 'user'
+        },
+        ignore: ['./node_modules/**']
+    })
+    .on('restart', function(){
+        console.log('Restarting...');
     });
 });
 
