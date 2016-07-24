@@ -1,7 +1,7 @@
 'use strict';
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
-var PORT = process.env.PORT = '3000';
+var PORT = process.env.PORT || '3000';
 var ENV = process.env.APP_ENV || 'dev';
 module.exports = function (app) {
     app.set('port', PORT);
