@@ -5,10 +5,13 @@
     var sinon = require('sinon');
     var chai = require('chai');
     var expect = chai.expect;
+    var CONNECT_TEST_TIMEOUT = process.env.CONNECT_TEST_TIMEOUT || 50000;
+
     describe('User Service BDD', function () {
         var db = new Database();
 
         beforeEach(function (done) {
+            this.timeout(CONNECT_TEST_TIMEOUT);
             return db.connect(done);
         });
 
