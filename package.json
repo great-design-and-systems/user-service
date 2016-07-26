@@ -21,10 +21,8 @@
     "log4js": "^0.6.38",
     "mongoose": "^4.5.3",
     "morgan": "^1.7.0",
-    "password-hash": "^1.2.2"
-  },
-  "devDependencies": {
-    "chai": "^3.5.0",
+    "password-hash": "^1.2.2",
+        "chai": "^3.5.0",
     "chakram": "^1.4.0",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
