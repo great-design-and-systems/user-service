@@ -6,12 +6,11 @@
     var chai = require('chai');
     var expect = chai.expect;
     var CONNECT_TEST_TIMEOUT = process.env.CONNECT_TEST_TIMEOUT || 50000;
-
+    var time = 0;
     describe('User Service BDD', function () {
         var db = new Database();
 
         beforeEach(function (done) {
-            this.timeout(CONNECT_TEST_TIMEOUT);
             return db.connect(done);
         });
 
@@ -35,6 +34,9 @@
                 var savedResult;
                 var userId;
                 beforeEach(function (done) {
+                    time++;
+                    registrationForm.username + time;
+                    registrationForm.email + time;
                     User.register(registrationForm, function (err, userSavedResult) {
                         savedResult = userSavedResult;
                         userId = userSavedResult.userId;

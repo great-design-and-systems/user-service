@@ -4,7 +4,8 @@ var User = require('../entity/User');
 function execute(username, callback) {
     User.findOne({
         username: username
-    }, function(err, user) {
+    }, function (err, user) {
+        console.log('user', user);
         if (user === null) {
             callback(true);
         } else {
