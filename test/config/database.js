@@ -2,8 +2,8 @@
 var mongoose = require('mongoose');
 
 module.exports = function (done) {
-    var PORT = process.env.DB_PORT || 27017;
-    var HOST = process.env.DB_HOST || 'localhost';
+    var PORT = process.env.DB_PORT_TEST || 27017;
+    var HOST = process.env.DB_HOST_TEST || 'localhost';
     var TEST_DB = process.env.DB_TEST || 'user';
     var USER = process.env.DB_USER;
     var PASSWORD = process.env.DB_PASSWORD;
@@ -34,7 +34,7 @@ module.exports = function (done) {
         var url = 'mongodb://';
         if (USER && PASSWORD) {
             url += USER;
-            url += PASSWORD;
+            url += ':'+PASSWORD;
             url += '@';
         }
         url += HOST;
