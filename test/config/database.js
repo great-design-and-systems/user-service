@@ -1,5 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
+var lodash = require('lodash');
 
 module.exports = function (done) {
     var PORT = process.env.DB_PORT_TEST || 27017;
@@ -34,7 +35,7 @@ module.exports = function (done) {
         var url = 'mongodb://';
         if (USER && PASSWORD) {
             url += USER;
-            url += ':'+PASSWORD;
+            url += ':' + PASSWORD;
             url += '@';
         }
         url += HOST;
@@ -47,14 +48,20 @@ module.exports = function (done) {
     }
 
     function clearDB(done) {
-        for (let i in mongoose.connection.collections) {
-            if (mongoose.connection.collections[i] && mongoose.connection.collections[i].drop) {
-                mongoose.connection.collections[i].drop(function (err) {
-                    console.log('collection dropped');
+        var colName;
+        for (var i in mongoose.connection.collections) {
+            colName = i; break;
+        }
+        if (colName) {
+            if (mongoose.connection.collections[colName] && mongoose.connection.collections[colName].drop) {
+                mongoose.connection.collections[colName].drop(function (err) {
+                    clearDB(done);
+                    lodash.unset(mongoose.connection.collections, colName);
                 });
             }
+        } else {
+            done();
         }
-        return done();
     }
 
     function disconnect(done) {

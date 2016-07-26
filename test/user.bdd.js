@@ -95,7 +95,7 @@
         });
 
         afterEach(function (done) {
-            return db.disconnect(done);
+            db.disconnect(done);
         });
     });
 })();
