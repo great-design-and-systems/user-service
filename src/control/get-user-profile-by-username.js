@@ -1,8 +1,6 @@
 'use strict';
 var UserProfile = require('../entity/User-profile');
 var User = require('../entity/User');
-var log4js = require('log4js');
-var logger = log4js.getLogger();
 function execute(username, callback) {
     User.findOne({
         username: username
