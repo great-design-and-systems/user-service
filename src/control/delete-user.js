@@ -1,8 +1,8 @@
 'use strict';
 var User = require('../entity/User');
 
-function execute(param, callback) {
-    User.remove(param, callback);
+function execute(userId, callback) {
+    User.findByIdAndRemove(userId, callback);
 }
 
 module.exports = execute;

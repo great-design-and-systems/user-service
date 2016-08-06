@@ -53,9 +53,7 @@ module.exports = {
     removeUser: function (userId, callback) {
         new DeleteUserProfileByUserId(userId, function (err) {
             if (!err) {
-                new DeleteUser({
-                    userId: userId
-                }, function (err) {
+                new DeleteUser(userId, function (err) {
                     if (!err) {
                         callback(undefined, {
                             message: 'User has been removed.'
