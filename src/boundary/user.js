@@ -29,7 +29,16 @@ module.exports = {
                                     userId: userResult._id,
                                     firstname: registrationForm.firstname,
                                     lastname: registrationForm.lastname
-                                }, callback);
+                                }, function (errProfile) {
+                                    if (errProfile) {
+                                        callback(errProfile);
+                                    } else {
+                                        callback(undefined, {
+                                            username: userResult.username,
+                                            userId: userResult._id
+                                        });
+                                    }
+                                });
                             }
                         });
                     } else {

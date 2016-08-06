@@ -10,8 +10,10 @@ function execute(req, res, err, result) {
     } else {
         res.status(200).send({
             message: 'Registration completed.',
+            userId: result.userId,
+            username: result.username,
             links: {
-                profile: 'http://' + req.headers.host + API + 'user-profile/' + result.userId
+                profile: 'http://' + req.headers.host + API + 'user-profile/' + result.username
             }
         });
     }
