@@ -13,7 +13,7 @@ var UserProfileSchema = new mongoose.Schema({
         type: String,
         required: [true, 'lastname is required.']
     },
-    avatarId: Number,
+    avatarId: String,
     createdOn: { type: Date, default: Date.now }
 });
 
