@@ -8,6 +8,7 @@ var jshint = require('gulp-jshint');
 var stylish = require('jshint-stylish');
 var server = require('gulp-express');
 var nodemon = require('gulp-nodemon');
+var git = require('gulp-git');
 var TEST_FILES = process.env.TEST_FILES || 'test/**/*.bdd.js';
 var SRC_FILES = process.env.SRC_FILES || 'src/**/*.js';
 var INDEX_FILE = 'index.js';
@@ -58,4 +59,12 @@ gulp.task('server-watch', function () {
 
 gulp.task('start', function () {
     runSequence('jshint', 'test', 'server-start');
-})
+});
+
+//Run git pull from multiple branches
+gulp.task('pull', function() {
+	git.pull('origin', [ 'master' ], function(err) {
+		if (err)
+			throw err;
+	});
+});
