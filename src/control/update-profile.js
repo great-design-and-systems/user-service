@@ -1,13 +1,14 @@
 'use strict';
 var UserProfile = require('../entity/User-profile');
 var User = require('../entity/User');
+var logger = require('./get-logger');
 
 function execute(username, data, callback) {
     User.findOne({
         username: username
     }, function(err, result) {
         if (err) {
-            console.error('update-profile', err);
+            logger.error('update-profile', err);
             callback({
                 message: 'User not found.'
             });
@@ -17,7 +18,7 @@ function execute(username, data, callback) {
                     userId: result._id
                 }, data, function(err) {
                     if (err) {
-                        console.error('update-profile', err);
+                        logger.error('update-profile', err);
                         callback({
                             message: 'User profile update failed.'
                         });
@@ -26,6 +27,7 @@ function execute(username, data, callback) {
                     }
                 });
             } catch (errProfile) {
+            	logger.error('update-profile', errProfile);
                 callback({
                     message: 'User profile update failed.'
                 });

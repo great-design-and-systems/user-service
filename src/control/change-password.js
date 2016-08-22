@@ -1,6 +1,7 @@
 'use strict';
 var User = require('../entity/User');
 var HashPassword = require('./hash-password');
+var logger = require('./get-logger');
 
 function execute(username, password, callback) {
     new HashPassword(password, function(err, hashPassword) {
@@ -12,7 +13,7 @@ function execute(username, password, callback) {
             if (!err) {
                 callback();
             } else {
-                console.error('change-password', err);
+                logger.error('change-password', err);
                 callback(err);
             }
         });

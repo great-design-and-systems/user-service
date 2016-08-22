@@ -1,11 +1,14 @@
 'use strict';
 var UserProfile = require('../entity/User-profile');
 var User = require('../entity/User');
+var logger = require('./get-logger');
+
 function execute(username, callback) {
     User.findOne({
         username: username
     }, function (err, result) {
         if (err) {
+        	logger.error('get-user-profile-by-username', err);
             callback({
                 message: 'User not found.'
             });
@@ -15,6 +18,7 @@ function execute(username, callback) {
                     userId: result._id
                 }, function (err, userProfileResult) {
                     if (err) {
+                    	logger.error('get-user-profile-by-username', err);
                         callback({
                             message: 'User profile not found'
                         });
@@ -25,6 +29,7 @@ function execute(username, callback) {
                     }
                 });
             } catch (errProfile) {
+            	logger.error('get-user-profile-by-username', errProfile);
                 callback({
                     message: 'User profile not found'
                 });

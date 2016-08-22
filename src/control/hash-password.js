@@ -1,4 +1,5 @@
 'use strict';
+var logger = require('./get-logger');
 var paswordHash = require('password-hash');
 var PASSWORD_ALGO = process.env.PASSWORD_ALGO;
 var PASSWORD_SALT_LENGTH = process.env.PASSWORD_SALT_LENGTH;
@@ -21,6 +22,7 @@ function execute(password, callback) {
     try {
         callback(undefined, paswordHash.generate(password, getOptions()));
     } catch (err) {
+    	logger.error('hash-password', err);
         callback(err);
     }
 }
